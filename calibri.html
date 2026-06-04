@@ -1,0 +1,73 @@
+
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма</title>
+    <style>
+        /* Глобальный шрифт */
+        * {
+            font-family: "Calibri", "Segoe UI", serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input,
+        textarea,
+        select,
+        button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<form action="#" method="post">
+    <h2>Форма обратной связи</h2>
+
+    <label for="name">Имя</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="topic">Тема</label>
+    <select id="topic" name="topic">
+        <option value="question">Вопрос</option>
+        <option value="feedback">Отзыв</option>
+        <option value="other">Другое</option>
+    </select>
+
+    <label for="message">Сообщение</label>
+    <textarea id="message" name="message" rows="5"></textarea>
+
+    <button type="submit">Отправить</button>
+</form>
+
+</body>
+</html>
