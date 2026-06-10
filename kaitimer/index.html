@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KAITimer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body style="">
+  <deck-stage width="1920" height="1080" style="--deck-rail-w: 188px;" no-rail>
+
+    <!-- 1 · TITLE (official КАИТ template image) -->
+    <section data-label="Титул">
+      <div class="title-kait">
+        <img class="bg" src="assets/title-kait.png" alt="">
+        <div class="ov theme">
+          <div class="v" id="tw-theme">«Разработка браузерного расширения для отслеживания и анализа времени,
+            проведённого на определённых веб-ресурсах»</div>
+        </div>
+        <div class="ov stud">
+          <div class="v" id="tw-student">Ардашев Максим Сергеевич</div>
+        </div>
+        <div class="ov ruk">
+          <div class="v" id="tw-ruk">Мижева Фатима Канчаубиевна</div>
+        </div>
+        <div class="place">Москва · 2026</div>
+      </div>
+    </section>
+
+    <!-- 2 · АКТУАЛЬНОСТЬ -->
+    <section data-label="Актуальность">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title anim">Актуальность</h1><img class="emblem anim" src="assets/emblem.png" alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <p class="lead-line anim d1">Среднестатистический пользователь проводит более 6 часов в сутки в браузере, не
+            контролируя структуру этого времени:</p>
+          <ul class="bul">
+            <li class="anim d2">отсутствие контроля над тем, сколько времени уходит на соцсети, развлечения и учёбу;
+            </li>
+            <li class="anim d3">проблема особенно остра для школьников и студентов, отвлекающихся на развлекательный
+              контент;</li>
+            <li class="anim d4">потребность в инструменте, ведущем учёт времени в фоне и визуализирующем статистику;
+            </li>
+            <li class="anim d5">необходимость скорректировать собственное цифровое поведение осознанно.</li>
+          </ul>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>2 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 · ЦЕЛЬ -->
+    <section data-label="Цель">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title anim">Цель проекта</h1><img class="emblem anim" src="assets/emblem.png" alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <p class="intro anim d1" style="font-size:32px;line-height:1.45">Разработать и опубликовать браузерное
+            расширение, обеспечивающее <b>автоматическое отслеживание</b> и <b>наглядный анализ</b> времени, проводимого
+            пользователем на различных веб-сайтах.<
+                                                    p>
+          <div class="grid anim d3" style="grid-template-columns:repeat(3,1fr);margin-top:46px">
+            <div class="card">
+              <h3>Объект</h3>
+              <p>Браузерное расширение как программный продукт для Google Chrome и Mozilla Firefox.</p>
+            </div>
+            <div class="card">
+              <h3>Предмет</h3>
+              <p>Программные методы и технологии: JavaScript, Web Extensions API, Chrome Storage API.</p>
+            </div>
+            <div class="card">
+              <h3>Период</h3>
+              <p>31.12.2025 — 10.03.2026. Теоретическая база — документация MDN и Chrome Developers.</p>
+            </div>
+          </div>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>3 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 · ЗАДАЧИ -->
+    <section data-label="Задачи">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title anim">Задачи проекта</h1><img class="emblem anim" src="assets/emblem.png" alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <div class="tasks">
+            <div class="task anim d1">
+              <div class="n">1</div>
+              <div class="t">Изучить архитектуру браузерных расширений и Web Extensions API</div>
+            </div>
+            <div class="task anim d2">
+              <div class="n">2</div>
+              <div class="t">Провести анализ существующих аналогичных решений на рынке</div>
+            </div>
+            <div class="task anim d3">
+              <div class="n">3</div>
+              <div class="t">Спроектировать структуру и интерфейс расширения</div>
+            </div>
+            <div class="task anim d4">
+              <div class="n">4</div>
+              <div class="t">Реализовать сбор, хранение и визуализацию данных о времени на сайтах</div>
+            </div>
+            <div class="task anim d5">
+              <div class="n">5</div>
+              <div class="t">Протестировать расширение и оценить результаты его работы</div>
+            </div>
+          </div>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>4 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 · АРХИТЕКТУРА РАСШИРЕНИЙ (figure) -->
+    <section data-label="Архитектура расширений">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title sm anim">Архитектура браузерного расширения</h1><img class="emblem anim"
+            src="assets/emblem.png" alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <div class="diag anim d2">
+            <div class="dcol">
+              <div class="dbox man">
+                <div class="bt">manifest.json</div>
+                <div class="bs">метаданные · разрешения</div>
+              </div>
+            </div>
+            <div class="dconn"></div>
+            <div class="dcol">
+              <div class="dbox">
+                <div class="bt">background</div>
+                <div class="bs">service worker · состояние</div>
+              </div>
+              <div class="dbox">
+                <div class="bt">content script</div>
+                <div class="bs">внедрение в DOM страниц</div>
+              </div>
+              <div class="dbox">
+                <div class="bt">popup / options</div>
+                <div class="bs">интерфейс и настройки</div>
+              </div>
+            </div>
+          </div>
+          <div class="dstore anim d4">
+            <code>chrome.tabs</code><code>chrome.storage</code><code>chrome.windows</code><code>chrome.alarms</code><code>chrome.idle</code>
+          </div>
+          <p class="figcap anim d5">Архитектура браузерного расширения (взаимодействие через Message Passing
+            API)</p>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>5 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 · ТЕХНОЛОГИИ -->
+    <section data-label="Технологии">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title anim">Технологии разработки</h1><img class="emblem anim" src="assets/emblem.png" alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <div class="tech anim d2">
+            <div class="t">
+              <div class="lg"><img src="assets/html.png"></div>
+              <h4>HTML</h4>
+              <p>Структура интерфейса popup-окна и страницы настроек.</p>
+            </div>
+            <div class="t">
+              <div class="lg"><img src="assets/css.png"></div>
+              <h4>CSS</h4>
+              <p>Custom properties, flexbox-разметка, анимации прогресс-баров.</p>
+            </div>
+            <div class="t">
+              <div class="lg"><img src="assets/js.jpg"></div>
+              <h4>JavaScript</h4>
+              <p>Вся логика расширения. ES2020+, async/await.</p>
+            </div>
+            <div class="t">
+              <div class="lg">
+                <div class="wext"><svg viewBox="0 0 24 24">
+                    <path
+                      d="M10.5 2.5a2 2 0 0 1 3 0c.4.5.5 1.2.2 1.9-.1.3 0 .6.3.6H17a1.5 1.5 0 0 1 1.5 1.5v2.5c0 .3.3.4.6.3.7-.3 1.4-.2 1.9.2a2 2 0 0 1 0 3c-.5.4-1.2.5-1.9.2-.3-.1-.6 0-.6.3V19A1.5 1.5 0 0 1 17 20.5h-3a.4.4 0 0 1-.3-.6c.3-.7.2-1.5-.2-2a2 2 0 0 0-3 0c-.4.5-.5 1.3-.2 2 .1.3 0 .6-.3.6H7A1.5 1.5 0 0 1 5.5 19v-2.5c0-.3-.3-.4-.6-.3-.7.3-1.4.2-1.9-.2a2 2 0 0 1 0-3c.5-.4 1.2-.5 1.9-.2.3.1.6 0 .6-.3V7A1.5 1.5 0 0 1 7 5.5h2.5c.3 0 .4-.3.3-.6-.3-.7-.2-1.4.2-1.9Z">
+                    </path>
+                  </svg></div>
+              </div>
+              <h4>WebExtensions API</h4>
+              <p>Кроссбраузерная спецификация: Chrome, Firefox, Edge, Opera.</p>
+            </div>
+          </div>
+          <div class="dstore anim d4" style="justify-content:flex-start;margin-top:34px">
+            <code>chrome.tabs — вкладки и URL</code><code>chrome.storage.local — статистика</code><code>chrome.windows — фокус, idle</code><code>chrome.alarms — запись</code>
+          </div>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>6 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 · МЕТОДЫ + ТАБЛИЦА 1 -->
+    <section data-label="Методы сбора">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title sm anim">Методы сбора и анализа данных</h1><img class="emblem anim" src="assets/emblem.png"
+            alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <p class="intro anim d1" style="font-size:21px;margin-bottom:24px;max-width:1600px">Временны́е метки фиксируют
+            начало визита; Idle Detection API приостанавливает таймер при простое &gt; 60 сек; данные агрегируются по
+            домену второго уровня. Инструмент должен корректно обрабатывать два типа поведения:</p>
+          <table class="t anim d3">
+            <thead>
+              <tr>
+                <th style="width:34%">Критерий</th>
+                <th class="us">Сёрфер</th>
+                <th>Геймер</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="rh">Время в браузере / сутки</td>
+                <td class="us">5–8 часов</td>
+                <td>2–4 часа</td>
+              </tr>
+              <tr>
+                <td class="rh">Характер активности</td>
+                <td class="us">Короткие сессии, частые переключения</td>
+                <td>Длительные сессии на 1–2 доменах</td>
+              </tr>
+              <tr>
+                <td class="rh">Доменов в день</td>
+                <td class="us">20–50 и более</td>
+                <td>3–10</td>
+              </tr>
+              <tr>
+                <td class="rh">Доля простоя (idle)</td>
+                <td class="us">Низкая</td>
+                <td>Высокая — фоновое окно во время игры</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="figcap anim d4">Таблица 1 — Сравнение поведения пользователей типов «сёрфер» и «геймер»</p>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>7 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 · АНАЛИЗ КОНКУРЕНТОВ + ТАБЛИЦА 2 -->
+    <section data-label="Анализ решений">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title sm anim">Анализ существующих решений</h1><img class="emblem anim" src="assets/emblem.png"
+            alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <table class="t anim d2" style="font-size:18px">
+            <thead>
+              <tr>
+                <th style="width:20%">Критерий</th>
+                <th><img class="thico" src="assets/comp/p5.png" alt=""><span class="thname">White Rabbit</span></th>
+                <th><img class="thico" src="assets/comp/p6.png" alt=""><span class="thname">Wasted Time</span></th>
+                <th><img class="thico" src="assets/comp/p4.png" alt=""><span class="thname">Tab Time Tracker</span></th>
+                <th class="us"><img class="thico" src="assets/logo-gradient.svg" alt=""><span
+                    class="thname">KAITimer</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="rh">Стоимость</td>
+                <td>Бесплатно</td>
+                <td>Бесплатно</td>
+                <td>Бесплатно</td>
+                <td class="us">Бесплатно</td>
+              </tr>
+              <tr>
+                <td class="rh">Выборочное отслеживание</td>
+                <td class="no">Нет</td>
+                <td class="yes">Да</td>
+                <td class="no">Нет</td>
+                <td class="us">Да</td>
+              </tr>
+              <tr>
+                <td class="rh">Визуализация статистики</td>
+                <td class="no">Нет</td>
+                <td class="no">Нет</td>
+                <td class="no">Нет</td>
+                <td class="us">Круговая диаграмма</td>
+              </tr>
+              <tr>
+                <td class="rh">Кастомизация UI</td>
+                <td class="no">Нет</td>
+                <td class="no">Нет</td>
+                <td>Только смена темы</td>
+                <td class="us">Тема + язык</td>
+              </tr>
+              <tr>
+                <td class="rh">Открытый код</td>
+                <td class="no">Нет</td>
+                <td class="no">Нет</td>
+                <td class="no">Нет</td>
+                <td class="us">Да</td>
+              </tr>
+              <tr>
+                <td class="rh">Браузеры</td>
+                <td>Chromium</td>
+                <td>Chromium</td>
+                <td>Chromium</td>
+                <td class="us">Chromium + Firefox</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="figcap anim d3">Таблица 2 — Краткое сравнение существующих решений для отслеживания времени в
+            браузере</p>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>8 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8a · АНАЛОГ 1: WHITE RABBIT -->
+    <section data-label="Аналог 1 · White Rabbit">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title sm anim">Аналог 1 — White Rabbit: Tab Timer</h1><img class="emblem anim"
+            src="assets/emblem.png" alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <div class="comp">
+            <div class="pop anim d2">
+              <img src="assets/comp/wr-icon.png" alt="">
+              <div class="cap">Всплывающее окно White Rabbit: Tab Timer</div>
+            </div>
+            <div class="anim d3">
+              <div class="cname"><img src="assets/comp/p5.png" alt="">
+                <div class="nm">White Rabbit: Tab Timer<span class="dev">Разработчик — iridiumIO · 5,0 ★ · Chrome Web
+                    Store</span></div>
+              </div>
+              <p class="desc">Бесплатное расширение для измерения времени, проведённого на отдельных вкладках. Интерфейс
+                крайне простой: компактное всплывающее окно показывает лишь <b>название</b>, <b>таймер</b> текущей
+                вкладки и две ссылки — <b>View URL</b> и <b>Time Log</b>.</p>
+              <p class="cons-h">Недостатки</p>
+              <ul class="cons">
+                <li>нет графической визуализации статистики;</li>
+                <li>отсутствует функция лимитов времени;</li>
+                <li>ограниченные возможности кастомизации интерфейса.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>9 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8b · АНАЛОГ 2: WASTED TIME TRACKER -->
+    <section data-label="Аналог 2 · Wasted Time">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title sm anim">Аналог 2 — Wasted Time Tracker</h1><img class="emblem anim" src="assets/emblem.png"
+            alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <div class="comp">
+            <div class="pop anim d2">
+              <img src="assets/comp/wt-icon.png" alt="">
+              <div class="cap">Окно настроек Wasted Time Tracker</div>
+            </div>
+            <div class="anim d3">
+              <div class="cname"><img src="assets/comp/p6.png" alt="">
+                <div class="nm">Wasted Time Tracker<span class="dev">Разработчик — Bumblebee Systems · 5,0 ★ · 361
+                    пользователь</span></div>
+              </div>
+              <p class="desc">Отслеживает время на <b>заранее заданных сайтах</b>: пользователь вручную вписывает до
+                десяти URL, а счётчик потраченного времени отображается прямо во всплывающем окне.</p>
+              <p class="cons-h">Недостатки</p>
+              <ul class="cons">
+                <li>крайне ограниченная аналитика;</li>
+                <li>отсутствует полноценная визуализация данных;</li>
+                <li>устаревший, практически неоформленный интерфейс.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>10 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8c · АНАЛОГ 3: TAB TIME TRACKER -->
+    <section data-label="Аналог 3 · Tab Time Tracker">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title sm anim">Аналог 3 — Tab Time Tracker</h1><img class="emblem anim" src="assets/emblem.png"
+            alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <div class="comp">
+            <div class="pop anim d2">
+              <img src="assets/comp/tt-icon.png" alt="">
+              <div class="cap">Всплывающее окно Tab Time Tracker</div>
+            </div>
+            <div class="anim d3">
+              <div class="cname"><img src="assets/comp/p4.png" alt="">
+                <div class="nm">Tab Time Tracker<span class="dev">Разработчик — Charlie Ewing · 4,3 ★ · 1 000
+                    пользователей</span></div>
+              </div>
+              <p class="desc">Ведёт учёт времени по <b>вкладкам и URL-адресам</b>, разделяя активные вкладки и историю.
+                Есть базовая смена темы оформления.</p>
+              <p class="cons-h">Недостатки</p>
+              <ul class="cons">
+                <li>нельзя вручную задать список отслеживаемых сайтов;</li>
+                <li>нет полноценной визуализации статистики;</li>
+                <li>неудобный для оперативного анализа дизайн.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>11 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 · НАЗВАНИЕ И ЛОГОТИП -->
+    <section data-label="Название и логотип">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title anim">Название и логотип</h1><img class="emblem anim" src="assets/emblem.png" alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <div class="brandrow">
+            <div class="logobox anim d2">
+              <img src="assets/logo-gradient.svg" alt="KAITimer">
+              <div class="blend"><span class="o">KAI</span><span class="h">T</span>imer</div>
+            </div>
+            <div>
+              <p class="intro anim d3" style="font-size:23px;margin-bottom:24px">Название образовано приёмом
+                <b>телескопии</b> — слиянием аббревиатуры <b>КАИТ</b> (Колледж Автоматизации и Информационных
+                Технологий) и слова <b>Timer</b>. Общая буква «T» на стыке сливается в одну.
+              </p>
+              <ul class="bul sm anim d4" style="gap:14px">
+                <li>лаконичность — одно слово для иконки и магазина;</li>
+                <li>смысл: функция (Timer) + происхождение (КАИТ);</li>
+                <li>уникальность — нет аналогов в Chrome Web Store;</li>
+                <li>цветовая гамма повторяет фирменный градиент колледжа.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="figcap anim d5">Основной логотип расширения KAITimer (разработан в Figma)</p>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>12 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 · АРХИТЕКТУРА KAITIMER -->
+    <section data-label="Архитектура KAITimer">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title sm anim">Проектирование архитектуры KAITimer</h1><img class="emblem anim"
+            src="assets/emblem.png" alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <div class="brandrow" style="grid-template-columns:0.9fr 1.1fr;gap:48px;align-items:start">
+            <div class="tree anim d2">KAITimer/
+              ├── <b>manifest.json</b> <span class="c"># Manifest V3</span>
+              ├── <b>main.html</b> <span class="c"># SPA-интерфейс</span>
+              ├── js/
+              │ ├── <b>background.js</b> <span class="c"># service worker</span>
+              │ └── <b>main.js</b> <span class="c"># switchView()</span>
+              ├── css/<b>style.css</b>
+              └── icons/ <span class="c">16·32·48·128.png</span></div>
+            <div class="grid anim d3" style="gap:18px">
+              <div class="card">
+                <h3>Разделение ответственности</h3>
+                <p>Каждый компонент выполняет строго определённую функцию — поддерживаемость и тестируемость кода.</p>
+              </div>
+              <div class="card">
+                <h3>Жизненный цикл</h3>
+                <p>Service worker подписан на <span class="mono accent">onActivated</span>, <span
+                    class="mono accent">onUpdated</span>, <span class="mono accent">onFocusChanged</span> и ежесекундно
+                  обновляет счётчики.</p>
+              </div>
+              <div class="card">
+                <h3>Хранилище — JSON по домену</h3>
+                <p><span class="mono">{ time, tracking, countInBackground, icon }</span> + настройки темы и языка в
+                  <span class="mono accent">chrome.storage.local</span>.
+                </p>
+              </div>
+            </div>
+          </div>
+          <p class="figcap anim d5">Схема компонентов и страниц расширения KAITimer</p>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>13 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 · ИНТЕРФЕЙС -->
+    <section data-label="Интерфейс">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title anim">Пользовательский интерфейс</h1><img class="emblem anim" src="assets/emblem.png" alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body" style="margin-top:36px">
+          <div class="screens anim d2">
+            <div class="shot"><img src="assets/screen-main.png">
+              <div class="cap"><b>Главное окно</b>счётчики · список сайтов</div>
+            </div>
+            <div class="shot"><img src="assets/screen-details.png">
+              <div class="cap"><b>Site Details</b>Total Time · фоновый учёт</div>
+            </div>
+            <div class="shot"><img src="assets/screen-stats.png">
+              <div class="cap"><b>Статистика</b>диаграмма на Canvas 2D</div>
+            </div>
+            <div class="shot"><img src="assets/screen-settings.png">
+              <div class="cap"><b>Настройки</b>темы · язык · сведения</div>
+            </div>
+          </div>
+          <p class="figcap anim d4">Экраны интерфейса расширения KAITimer (минимализм, акцентный
+            фиолетовый, светлая/тёмная темы)</p>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>14 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 · ТЕСТИРОВАНИЕ -->
+    <section data-label="Тестирование">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title sm anim">Тестирование и оценка результатов</h1><img class="emblem anim"
+            src="assets/emblem.png" alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <div class="stats anim d2">
+            <div class="stat">
+              <div class="big">&lt; 1%</div>
+              <div class="lbl">погрешность измерений — ±3 сек на 5-минутную сессию</div>
+            </div>
+            <div class="stat">
+              <div class="big">20</div>
+              <div class="lbl">тестовых сессий со сравнением с ручным хронометражем</div>
+            </div>
+            <div class="stat">
+              <div class="big">4 / 5</div>
+              <div class="lbl">участников лучше осознали структуру своего времени</div>
+            </div>
+            <div class="stat">
+              <div class="big">3 / 5</div>
+              <div class="lbl">сообщили о реальном изменении поведения</div>
+            </div>
+          </div>
+          <div class="grid anim d4" style="grid-template-columns:1fr 1fr;margin-top:26px">
+            <div class="card">
+              <h3>Функциональное тестирование</h3>
+              <p>Быстрое переключение вкладок, несколько окон, режим сна и пробуждение, работа с профилями. Критические
+                ошибки устранены.</p>
+            </div>
+            <div class="card">
+              <h3>Пользовательское тестирование</h3>
+              <p>5 добровольцев — студентов КАИТ №20 — в течение двух дней. Подтверждена практическая ценность продукта.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>15 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 · ПУБЛИКАЦИЯ И ОТЗЫВЫ -->
+    <section data-label="Публикация и отзывы">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title sm anim">Публикация и отзывы пользователей</h1><img class="emblem anim"
+            src="assets/emblem.png" alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <div class="revrow">
+            <img class="rev anim d2" src="assets/reviews.png" alt="Отзывы">
+            <div>
+              <div class="quote anim d3">«&nbsp;Берём в <span class="g">гугл!</span>&nbsp;»</div>
+              <p class="qsub anim d4">Расширение опубликовано в <b>Chrome Web Store</b> и <b>Firefox Add-ons</b>, прошло
+                автоматическую и ручную модерацию на обеих платформах.</p>
+              <div class="brow anim d5">
+                <div class="bd">
+                  <div class="b1">5,0 / 5,0</div>
+                  <div class="b2">средний рейтинг</div>
+                </div>
+                <div class="bd">
+                  <div class="b1">Chrome</div>
+                  <div class="b2">+ Firefox Add-ons</div>
+                </div>
+                <div class="bd">
+                  <div class="b1">v1.0.2</div>
+                  <div class="b2">публичный релиз</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="figcap anim d6">Отзывы пользователей расширения KAITimer в магазинах</p>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>16 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 · ОФОРМЛЕНИЕ В МАГАЗИНАХ -->
+    <section data-label="Магазины">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title sm anim">Оформление страниц в магазинах</h1><img class="emblem anim" src="assets/emblem.png"
+            alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body" style="margin-top:34px">
+          <div class="stores">
+            <div class="store anim d2">
+              <img class="ss" src="assets/chrome-store.png" alt="Chrome Web Store">
+              <div class="sf"><span class="nm">Chrome Web Store</span><span class="rt">5,0 ★ · 4 отзыва · 5
+                  пользователей</span></div>
+            </div>
+            <div class="store anim d3">
+              <img class="ss" src="assets/firefox-store.png" alt="Firefox Add-ons">
+              <div class="sf"><span class="nm">Firefox Add-ons</span><span class="rt">опубликовано · отзывы
+                  накапливаются</span></div>
+            </div>
+          </div>
+          <p class="figcap anim d5">Страницы KAITimer в Chrome Web Store и Firefox Add-ons (промо-баннеры
+            «Customize sites you track» и «Analyze statistics»)</p>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>17 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15 · ЗАКЛЮЧЕНИЕ -->
+    <section data-label="Заключение">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title anim">Заключение</h1><img class="emblem anim" src="assets/emblem.png" alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <p class="intro anim d1" style="margin-bottom:30px">Поставленная цель достигнута: расширение KAITimer
+            спроектировано, реализовано и доведено до публичного релиза. Обеспечено:</p>
+          <div class="checks">
+            <div class="chk anim d2">
+              <div class="ck"><svg viewBox="0 0 24 24">
+                  <path d="M5 13l4 4L19 7"></path>
+                </svg></div>
+              <div>автоматическое отслеживание времени с фоновым подсчётом;</div>
+            </div>
+            <div class="chk anim d3">
+              <div class="ck"><svg viewBox="0 0 24 24">
+                  <path d="M5 13l4 4L19 7"></path>
+                </svg></div>
+              <div>наглядная статистика — круговые диаграммы на базе Canvas;</div>
+            </div>
+            <div class="chk anim d4">
+              <div class="ck"><svg viewBox="0 0 24 24">
+                  <path d="M5 13l4 4L19 7"></path>
+                </svg></div>
+              <div>локализация (RU / EN) и тёмная / светлая темы;</div>
+            </div>
+            <div class="chk anim d5">
+              <div class="ck"><svg viewBox="0 0 24 24">
+                  <path d="M5 13l4 4L19 7"></path>
+                </svg></div>
+              <div>полная конфиденциальность — данные хранятся локально.</div>
+            </div>
+          </div>
+          <p class="intro anim d6" style="font-size:21px;color:var(--muted);margin-top:30px">Перспективы: экспорт
+            статистики в CSV, синхронизация между устройствами, публикация в Microsoft Edge Add-ons и Opera Add-ons.</p>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>18 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16 · ИСТОЧНИКИ -->
+    <section data-label="Источники">
+      <div class="slide">
+        <div class="head">
+          <h1 class="title anim">Информационные источники</h1><img class="emblem anim" src="assets/emblem.png" alt="">
+        </div>
+        <div class="rule anim"></div>
+        <div class="body">
+          <ul class="bul sm anim d2" style="gap:16px">
+            <li>Mozilla Developer Network — официальная документация Web Extensions API;</li>
+            <li>Chrome Developers — Manifest V3, chrome.tabs / storage / alarms / windows / idle;</li>
+            <li>White Rabbit, Wasted Time Tracker, Tab Time Tracker — страницы в Chrome Web Store;</li>
+            <li>HTML Canvas 2D Context (W3C) и ECMAScript Language Specification (Ecma International);</li>
+            <li>ГОСТ 7.0.5–2008 и ГОСТ 7.1–2003 — правила оформления библиографических ссылок.</li>
+          </ul>
+        </div>
+        <div class="foot">
+          <div class="l"><img src="assets/solo-clocks.svg">KAITimer · Индивидуальный проект</div>
+          <div>19 / 20</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17 · СПАСИБО -->
+    <section data-label="Спасибо" data-deck-last-visible="">
+      <div class="thanks">
+        <img class="anim" src="assets/logo-gradient.svg" alt="KAITimer">
+        <h1 class="anim d1">СПАСИБО ЗА <span class="g">ВНИМАНИЕ!</span></h1>
+        <p class="anim d3" id="tw-thanks">Ардашев Максим Сергеевич · группа ИСПо152 · КАИТ №20 · 2026</p>
+        <div class="thanks-links anim d4">
+          <a href="https://chromewebstore.google.com/detail/kaitimer/njdofpahindeaohmjgieaaipbohpomkd" target="_blank">
+            Chrome Web Store
+          </a>
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/kaitimer/" target="_blank">
+            Firefox Add-ons
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <template id="__bundler_thumbnail">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" data-om-id="f5264f3a:463">
+        <rect width="100" height="100" fill="#fff" data-om-id="f5264f3a:464"></rect><text x="50" y="60"
+          font-family="sans-serif" font-size="34" font-weight="700" fill="#4C4291" text-anchor="middle"
+          data-om-id="f5264f3a:465">K</text>
+      </svg>
+    </template>
+
+  </deck-stage>
+
+  <script src="deck-stage.js"></script>
+
+
+</body>
+
+</html>
